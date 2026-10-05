@@ -30,3 +30,4 @@ The Reflectance Sensor lab interfaces with the following:
 
 * MSP432P4xx SimpleLink™ Microcontrollers
 Technical Reference Manual
+* [QTRX sensor](https://www.pololu.com/product/3672)
