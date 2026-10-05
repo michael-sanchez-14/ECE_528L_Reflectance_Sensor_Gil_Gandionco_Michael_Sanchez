@@ -14,7 +14,7 @@ The Reflectance Sensor lab interfaces with the following:
 1. 
 2. On the QTRX Reflectance Sensor Array CTRL EVEN and CTRL ODD are responsible for enabling the reflectance sensors, the CTRL EVEN is connected to P5.3 while the other is connected to P9.2 on the TI-RSLK MSP432. The default value after powerin on the sensor array for these pins are HIGH. 
 3. 
-4. [Result](print_binary.md)
+4. [Result](print_binary.c)
 
 ## Componets Used:
 
