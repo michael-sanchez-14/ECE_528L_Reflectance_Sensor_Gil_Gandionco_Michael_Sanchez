@@ -29,6 +29,7 @@ int main()
 void Print_Binary(uint8_t value_to_convert)
 {
     uint8_t bit;
+    printf("Binary: ");
     for(int i = 7; i >= 0; i--)
     {
         bit = (value_to_convert >> i) & 1;
