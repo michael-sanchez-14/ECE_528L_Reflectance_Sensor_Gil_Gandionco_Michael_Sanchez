@@ -14,6 +14,16 @@
 
 void Print_Binary(uint8_t value_to_convert)
 {
-    // Your Print_Binary function implementation goes here
-
+    uint8_t bit;
+    printf("Line Sensor: ");
+    for(int i = 7; i >= 0; i--)
+    {
+        bit = (value_to_convert >> i) & 1;
+        printf("%d", bit);
+        if(i == 4)
+        {
+            printf("_");
+        }
+    }
+    printf("\n");
 }
