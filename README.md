@@ -45,7 +45,7 @@ void P5_0_and_P9_7_Init()
 ## Analysis and Results:
 
 ## Known Issues or Limitations
-
+There were no known Issues or limitatios for this Lab
 
 ## Author Contribution
 
