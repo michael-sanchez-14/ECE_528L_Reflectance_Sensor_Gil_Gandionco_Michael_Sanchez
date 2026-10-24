@@ -16,7 +16,7 @@ The lab introduces the 8-Channel QTRX reflectance sensor array. It is located at
 ## Pre Lab
 1. What does a reflectance sensor consist of? How many reflectance sensors are on the QTRX Reflectance Sensor Array? What is its operating voltage? Refer to Pololu’s documentation page of the QTRX Reflectance Sensor Array.
 
-    - The reflectance sensor consist of dimmable IR emitter coupled with a phototransistor. The QTRX Reflectance Sensor Array has 8 reflectance sensors. The operating voltage is 2.9 V to 5.5 V.
+    - The reflectance sensor consists of a dimmable IR emitter coupled with a phototransistor. The QTRX Reflectance Sensor Array has 8 reflectance sensors. The operating voltage is 2.9 V to 5.5 V.
 
 2. Which control pins on the QTRX Reflectance Sensor Array are responsible for enabling the reflectance sensors? What is their default value after powering on the sensor array? List the pin names and the pin numbers used to connect the two control pins. Refer to Pololu’s documentation page of the QTRX Reflectance Sensor Array. 
 
@@ -57,7 +57,21 @@ Next, the lab required to implement Reflectance_Sensor_Init and Reflectance_Sens
 
 The functions are verified by moving the robot along the black lines and observing the values read from the reflectance sensor on the serial terminal.
 
-The final task was to implement the function, Detect_Line_Position, which showcases the robot's position relative to a black line by displaying a specific behavior on the LED and RGB LED. It was implemented by using switch case statements that uses the value of the reflectance_value. The cases were verified by manually placing the robot on a black line while the LED outputs are observed.
+The following table is the classification for the robot's position based on the sensor's binary output.
+
+| Line Position | Reflectance Sensor Value |
+| --- | --- |
+| Center | 00011000 |
+| Slightly Left | 00011100 |
+| Slightly Right | 00111000 |
+| Far Left | 00000001 |
+| Far Right | 10000000 |
+| T-Intersection | 11111111 |
+| Dead End | 00000000 |
+| Left Turn | 11111000 |
+| Right Turn | 00011111 |
+
+The final task was to implement the function, Detect_Line_Position, which showcases the robot's position relative to a black line by displaying a specific behavior on the LED and RGB LED. It was implemented by using switch case statements that use the value of the reflectance_value. The cases were verified by manually placing the robot on a black line while the LED outputs are observed.
 
 ## Known Issues or Limitations
 No known issues or limitations.
