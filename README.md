@@ -10,7 +10,8 @@ The Reflectance Sensor lab interfaces with the following:
 * 8-Channel QTRX Sensor Array - [Product Link](https://www.pololu.com/product/3672)
 
 ## Overview
-For Lab 2 we are introduced to a new component, the 8 Channel QTRX reflectance Sensor Array. For this lab we utilize this component to test and see where on a black line the robot is. The 8 channel QTRX reflectance sensor array utilizes 8 infrared LED/phototransistor pairs that are capable of seeing the changes in the reflectance on the ground, whenever the sensor sees the black tape we get an output of 1, while a white background outputs 0.
+
+The lab introduces the 8-Channel QTRX reflectance sensor array. It is located at the bottom of the robot and uses infrared light to determine the robot's position relative to black line. The reflectance sensor array contains 8 infrared LED and phototransistor pairs that detect changes in the amount of infrared light reflected by the surface underneath it. The infrared LED shines infrared light onto the surface and the light is reflected from the surface. It is then detected by the photoresistor. When the reflectance sensor is under a white surface, it reflects more infrared light while under a black surface, it reflects less infrared light. The MSP432 reads the array and produces an 8-bit binary value. When a sensor is under a black surface, it reads an output of 1, while a white surface reads an output of 0. The main objective of the lab is to initialize and read the reflectance sensor. The robot is moved manually over black tape to observe sensor readings and LED outputs.
 
 ## Pre Lab
 1. What does a reflectance sensor consist of? How many reflectance sensors are on the QTRX Reflectance Sensor Array? What is its operating voltage? Refer to Pololu’s documentation page of the QTRX Reflectance Sensor Array.
@@ -42,24 +43,32 @@ void P5_0_and_P9_7_Init()
     - [Result](print_binary.c)
 
 ## Components Used:
-For this lab we used the following components:
+
+* MSP432 LaunchPad
+* USB-A to Micro-USB cable
+* TI-RSLK MAX Chassis 
 * 8-Channel QTRX Sensor Array
-* Black Tape
 
 ## Analysis and Results:
-To first start this lab we implemented our print_binary.c code from the Pre-Lab, this was done in order to see the output of the reflectance sensors. Once this was completed we moved on to implementing the Reflectance_Sensor_Init and Reflectance_Sensor_Read functions. In the first function we initialize pins P5.3 and P9.2 as GPIO outputs, while pins P7.0 - P7.7 were GPIO inputs. As for the Reflectance_Sensor_Read function we set certain bits in order to turn on the even IR LEDs, then the odd IR LEDs, after doing this we use a delay then assign the P7->IN to a local variable, reflectance_value. After turning off the even and odd IR LEDs we return reflectance_value.
 
-After doing this we moved on to the task for this lab. We were tasked with creating a function called Detect_Line_Postion, this function changed the value of LED 1 and the RGB LED depending on were the robot is on the black tape. In order to achieve this we used a switch case statement for every case. Finally we tested our task by placing the robot on the line to make sure every case is correct, once we got the correct results we verified them with the instructor. 
+The first part of the lab involved placing the Print_binary() function from the pre-lab in the Print_Binary.c source file. The function is used to print the 8-bit values read from the reflectance sensor.
+
+Next, the lab required to implement Reflectance_Sensor_Init and Reflectance_Sensor_Read function. P5.3 and P9.2 were configured as an output GPIO pin while P7.0 - P7.7 are configured as input GPIO pins. P5.3 and P9.2 control even and odd numbered emitters while P7.0 - P7.7 are used to obtain the sensor readings. The Reflectance_Sensor_Read consectuvively reads the reflectance sensor's value by writing to specified registers. It turns on the infrared LEDs and configures P7.0 - P7.7 as outputs. The function also drives P7.0 - P7.7 to active high by setting the bits in the OUT register. It waits for a set amount of time. Then, the sensor values are read using P7->IN and is assigned to a local variable called reflectance_value. Lastly, it turns off the IR LEDs and returns the value of reflect value.
+
+The functions are verified by moving the robot along the black lines and observing the values read from the reflectance sensor on the serial terminal.
+
+The final task was to implement the function, Detect_Line_Position, which showcases the robot's position relative to a black line by displaying a specific behavior on the LED and RGB LED. It was implemented by using switch case statements that uses the value of the reflectance_value. The cases were verified by manually placing the robot on a black line while the LED outputs are observed.
+
 ## Known Issues or Limitations
-There were no known Issues or limitatios for this Lab
+No known issues or limitations.
 
 ## Author Contribution
 * Michael Sanchez
     * Worked on Pre-Lab questions 2 and 4
     * Worked on the Reflectance_Sensor_Init and Reflectance_Sensor_Read functions
 * Gil Gandionco 
-    * 
-    * 
+    * Worked on Pre-Lab questions 1 and 4
+    * Worked on the Detect_Line_Position function.
 
 ## References
 
